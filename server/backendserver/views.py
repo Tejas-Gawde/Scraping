@@ -7,9 +7,7 @@ import json
 
 # Create a Firestore client
 db = firestore.client()
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-json_db = os.path.join(BASE_DIR, 'C:/Users/tejas/Desktop/scraping-assignment/server/nobero_scraper/products.json')
 
 
 def all_products(request):
@@ -52,20 +50,4 @@ def all_products(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-
-def upload_json(request):
-    # Load the JSON data from the file
-    with open(json_db, 'r') as f:
-        data = json.load(f)
-
-    if isinstance(data, list):
-        for product in data:
-            # Add each product to the 'products' collection in Firestore
-            try:
-                doc_ref = db.collection('products').add(product)
-                print(f"Uploaded: {product.get('title', 'Unknown Product')} with document ID: {doc_ref[1].id}")
-            except Exception as e:
-                print(f"Failed to upload {product.get('title', 'Unknown Product')}: {e}")
-    else:
-        print("The data is not in the expected list format.")
 
