@@ -20,7 +20,7 @@ from firebase_admin import credentials
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-FIREBASE_CREDENTIALS_PATH = os.path.join(BASE_DIR, 'scraping-f7e8c-firebase-adminsdk-uwudf-2086c199b7.json')
+FIREBASE_CREDENTIALS_PATH = os.path.join(BASE_DIR, 'scraping-25b47-firebase-adminsdk-8oymo-f4bf7643af.json')
 cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
 firebase_admin.initialize_app(cred)
 
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'corsheaders',
     'backendserver',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djongo',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'assignserver.urls'
@@ -85,12 +86,8 @@ WSGI_APPLICATION = 'assignserver.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-           'ENGINE': 'djongo',
-           'NAME': 'Scraping',
-           'CLIENT': {
-                'host': 'mongodb+srv://tejasg263:KJvm6qXdEXdZSsx1@products.yiavh.mongodb.net/?retryWrites=true&w=majority&appName=Products'
-            }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3"
     }
 }
 
@@ -124,6 +121,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:5713',
+)
 
 
 # Static files (CSS, JavaScript, Images)

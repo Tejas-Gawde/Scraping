@@ -7,7 +7,7 @@ const Navbar = () => {
     <>
       <div className="h-12 lg:h-16 w-full box-border flex justify-between items-center pl-4 pr-4">
         <div className="heading text-xl lg:text-3xl md:text-2xl font-bold italic text-gray-600">
-          <Link to="/">ShopiWhy</Link>
+          <Link to="/">Nobero</Link>
         </div>
         <div className="hidden md:flex md:gap-5">
           <Link className="hover:text-blue-600 transition-colors" to="/">

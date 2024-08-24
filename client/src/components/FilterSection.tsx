@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -94,10 +94,10 @@ const FilterColumn: React.FC = () => {
   };
 
   return (
-    <div className="w-64 bg-white shadow-md rounded-lg p-4">
+    <div className="w-96 p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Filter</h2>
-        <button onClick={clearAll} className="text-yellow-600 hover:underline">
+        <button onClick={clearAll} className="text-blue-600 hover:underline">
           Clear All
         </button>
       </div>
@@ -129,7 +129,7 @@ const FilterColumn: React.FC = () => {
                   onChange={() => toggleFilter(section, option.value)}
                   className={`${
                     section.type === "single" ? "form-radio" : "form-checkbox"
-                  } h-4 w-4 text-yellow-600`}
+                  } h-4 w-4 text-blue-600`}
                   name={section.title}
                 />
                 <span className="flex items-center">
@@ -146,9 +146,6 @@ const FilterColumn: React.FC = () => {
           </div>
         </div>
       ))}
-      <button className="mt-4 w-full bg-yellow-600 text-white py-2 rounded-md hover:bg-yellow-700">
-        Show
-      </button>
     </div>
   );
 };
